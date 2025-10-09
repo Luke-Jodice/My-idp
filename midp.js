@@ -10,8 +10,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 // --- 1. Load certs ---
-const idpPrivateKey = fs.readFileSync("./certs/idp-private.pem");
-const idpPublicCert = fs.readFileSync("./certs/idp-public.cert");
+const idpPrivateKey = fs.readFileSync("./test-certs/idp-private.pem");
+const idpPublicCert = fs.readFileSync("./test-certs/idp-public.cert");
 
 // --- 2. Configure IdP ---
 const baseUrl = process.env.BASE_URL || "https://your-app-name.onrender.com";
