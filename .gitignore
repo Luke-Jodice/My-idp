@@ -2,3 +2,4 @@ node_modules
 certs
 test-certs
 *.md
+examplemeta.xml
