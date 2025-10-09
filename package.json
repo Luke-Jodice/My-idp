@@ -1,0 +1,21 @@
+{
+  "name": "midp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node midp.js",
+    "dev": "nodemon midp.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@authenio/samlify-node-xmllint": "^2.0.0",
+    "express": "^5.1.0",
+    "samlify": "^2.10.1",
+    "xml-crypto": "^6.1.2"
+  }
+}
