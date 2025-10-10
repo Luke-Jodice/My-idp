@@ -1,0 +1,16 @@
+[
+  {
+    "id": "user_1760062409005",
+    "email": "Jodiceluke@gmail.com",
+    "hashedPassword": "$2b$10$a4hE7J1r6RCo5lQYdcxuJO6/NBVPT4F2Xe8vGftEpZiiXAM1La/Ee",
+    "firstName": "Luke",
+    "lastName": "Jodice"
+  },
+  {
+    "id": "user_1760062500137",
+    "email": "pukelodice@gmail.com",
+    "hashedPassword": "$2b$10$6FQfG9crJsP0o7JRtz3OCOYX7hZKXX3OUjUNtNr6Tn94zVFWc1Lke",
+    "firstName": "NOT LUKE",
+    "lastName": "JODICE"
+  }
+]

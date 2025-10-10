@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node midp.js",
-    "dev": "nodemon midp.js",
+    "start": "node idpv2.js",
+    "dev": "nodemon idpv2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,7 +14,10 @@
   "type": "module",
   "dependencies": {
     "@authenio/samlify-node-xmllint": "^2.0.0",
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "nodemon": "^3.1.10",
     "samlify": "^2.10.1",
     "xml-crypto": "^6.1.2"
   }
