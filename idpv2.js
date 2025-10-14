@@ -58,6 +58,8 @@ const idpPublicCert = fs.readFileSync(idpPubPath, "utf8");
 // Quickbase SP info - the ACS and the SP public cert (used to verify signed AuthnRequest)
 const quickbaseAcsUrl = process.env.QUICKBASE_ACS_URL || "https://ljodice.quickbase.com/saml/ssoassert.aspx";
 const quickbaseEntity = process.env.QUICKBASE_ENTITY_ID || "https://quickbase.com";
+let quickbasePublicCert = null;
+/*
 const quickbaseCertPath = process.env.QUICKBASE_CERT_PATH || "./test-certs/quickbase-public.cert";
 
 if (!fs.existsSync(quickbaseCertPath)) {
@@ -71,6 +73,7 @@ let quickbasePublicCert = null;
 if (fs.existsSync(quickbaseCertPath)) {
   quickbasePublicCert = fs.readFileSync(quickbaseCertPath, "utf8");
 }
+*/
 
 // --- ServiceProvider (Quickbase) ---
 // If quickbasePublicCert is provided we include it in metadata so samlify can use it to validate signatures.
