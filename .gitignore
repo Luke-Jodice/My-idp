@@ -3,3 +3,5 @@ certs
 test-certs
 *.md
 examplemeta.xml
+MarkdownNotes
+midp.js
