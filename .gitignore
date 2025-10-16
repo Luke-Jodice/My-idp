@@ -5,3 +5,4 @@ test-certs
 *.md
 examplemeta.xml
 MarkdownNotes
+users.json

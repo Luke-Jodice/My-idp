@@ -1,7 +1,7 @@
 [
   {
     "id": "user_1760062409005",
-    "email": "Jodiceluke@gmail.com",
+    "email": "jodiceluke@gmail.com",
     "hashedPassword": "$2b$10$a4hE7J1r6RCo5lQYdcxuJO6/NBVPT4F2Xe8vGftEpZiiXAM1La/Ee",
     "firstName": "Luke",
     "lastName": "Jodice"
@@ -11,6 +11,8 @@
     "email": "pukelodice@gmail.com",
     "hashedPassword": "$2b$10$91p/Gd8QldH2Va3vR3feHu6M7I251OacsNWEbGIhLX6HkZJEXkHGq",
     "firstName": "NOT LUKE",
-    "lastName": "JODICE"
+    "lastName": "JODICE",
+    "passwordResetToken": "cc8ddf28a6a7618682dd937498e67b623bb63a1d021ffbe4b23f474b5327c332",
+    "passwordResetExpires": 1760499542172
   }
 ]
