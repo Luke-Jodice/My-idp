@@ -1,7 +1,7 @@
-// idp.js
 import express from "express";
-import redis from "redis";
-import ConnectRedis from "connect-redis";
+import session from "express-session";
+import { createClient } from "redis";
+import { RedisStore } from "connect-redis";
 import fs from "fs";
 import path from "path";
 import { IdentityProvider, ServiceProvider, setSchemaValidator } from "samlify";
@@ -13,14 +13,30 @@ setSchemaValidator(validator);
 
 const app = express();
 
-// Initialize Redis client and store
-const RedisStore = ConnectRedis(session);
-const redisClient = redis.createClient({
-  url: process.env.REDIS_URL || "redis://localhost:6379"
+//init redis
+const redisClient = createClient({
+  url: process.env.REDIS_URL || "redis://127.0.0.1:6379",
 });
-redisClient.on("error", (err) => console.log("Redis Client Error", err));
-redisClient.connect();
 
+// connect
+await redisClient.connect().catch(console.error);
+
+// init
+const redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "session:",
+});
+
+// set
+app.use(
+  session({
+    store: redisStore,
+    secret: process.env.SESSION_SECRET || "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
 // Create User UI
 app.get("/create-user", (req, res) => {
   res.sendFile(path.resolve(process.cwd(), "create-user.html"));
@@ -37,29 +53,20 @@ app.get("/reset-password", (req, res) => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(session({
-  store: new RedisStore({ client: redisClient }),
-  secret: process.env.SESSION_SECRET || "super-strong-secret-change-me",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "lax"
-  }
-}));
-const session =
-  {
+
+app.use(
+  session({
+    store: redisStore,
     secret: process.env.SESSION_SECRET || "super-strong-secret-change-me",
     resave: false,
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "lax"
-    }
-  }
-  await redis.set("usercred", JSON.stringify(session));
+      sameSite: "lax",
+    },
+  })
+);
 
 
 app.use("/api", userApiRouter);
