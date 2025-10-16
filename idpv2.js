@@ -1,6 +1,7 @@
 // idp.js
 import express from "express";
-import session from "express-session";
+import redis from "redis";
+import ConnectRedis from "connect-redis";
 import fs from "fs";
 import path from "path";
 import { IdentityProvider, ServiceProvider, setSchemaValidator } from "samlify";
@@ -11,6 +12,14 @@ import userApiRouter from "./user-api.js";
 setSchemaValidator(validator);
 
 const app = express();
+
+// Initialize Redis client and store
+const RedisStore = ConnectRedis(session);
+const redisClient = redis.createClient({
+  url: process.env.REDIS_URL || "redis://localhost:6379"
+});
+redisClient.on("error", (err) => console.log("Redis Client Error", err));
+redisClient.connect();
 
 // Create User UI
 app.get("/create-user", (req, res) => {
@@ -29,6 +38,7 @@ app.get("/reset-password", (req, res) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
+  store: new RedisStore({ client: redisClient }),
   secret: process.env.SESSION_SECRET || "super-strong-secret-change-me",
   resave: false,
   saveUninitialized: false,
@@ -38,6 +48,19 @@ app.use(session({
     sameSite: "lax"
   }
 }));
+const session =
+  {
+    secret: process.env.SESSION_SECRET || "super-strong-secret-change-me",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax"
+    }
+  }
+  await redis.set("usercred", JSON.stringify(session));
+
 
 app.use("/api", userApiRouter);
 
