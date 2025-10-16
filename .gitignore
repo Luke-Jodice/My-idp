@@ -1,3 +1,4 @@
+.DS_Store 
 midp.js
 node_modules
 certs
@@ -7,3 +8,4 @@ examplemeta.xml
 MarkdownNotes
 midp.js
 users.json
+.env
