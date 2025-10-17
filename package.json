@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node idpv2.js",
     "dev": "nodemon idpv2.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +18,16 @@
     "connect-redis": "^9.0.0",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "jest": "^30.2.0",
     "nodemon": "^3.1.10",
     "redis": "^5.8.3",
     "samlify": "^2.10.1",
     "xml-crypto": "^6.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "babel-jest": "^30.2.0",
+    "supertest": "^7.1.4"
   }
 }
